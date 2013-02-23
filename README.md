@@ -15,14 +15,11 @@ if($this->getUserRole() == AJAX_CHAT_ADMIN || $this->getUserRole() == AJAX_CHAT_
 ```
 
 ###/xkcd
-=================
 
 This gets comics from XKCD.com.
 
 
 Valid usage:
-=======
-Valid uses:
 
     /xkcd
     /xkcd new
@@ -34,7 +31,6 @@ Valid uses:
 This has precautions put in place to prevent severe lag from 404s.
 
 ###/stock
-=================
 
 This fetches stock data from the Yahoo! stock API. 
 
