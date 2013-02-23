@@ -35,10 +35,9 @@ This has precautions put in place to prevent severe lag from 404s.
 This fetches stock data from the Yahoo! stock API. 
 
 Valid usage:
+
     /stock FB
     /stock GOOG
     /stock C
-
-=================
 
 Feel free to submit pull requests with improvements.
