@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <title>AJAX Chat Plugins by caffeinewriter</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>AJAX Chat Plugins</h1>
+        <h2>Plugins for frug's Ajax Chat</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/caffeinewriter/ajax-chat-plugins/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/caffeinewriter/ajax-chat-plugins/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/caffeinewriter/ajax-chat-plugins" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <p>This collection of plugins was developed by xMonsterx (Brandon Anzaldi) and NeCRoN99. They're designed to enhance the functionality of <a href="http://frug.github.com/AJAX-Chat/">Frug's AJAX Chat</a>. This can be integrated through the following lines (Verified to work in CustomAjaxChat.php):</p>
+
+<div class="highlight"><pre><span class="k">function</span> <span class="nf">parseCustomCommands</span><span class="p">(</span><span class="nv">$text</span><span class="p">,</span> <span class="nv">$textParts</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getUserRole</span><span class="p">()</span> <span class="o">==</span> <span class="nx">AJAX_CHAT_ADMIN</span> <span class="o">||</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getUserRole</span><span class="p">()</span> <span class="o">==</span> <span class="nx">AJAX_CHAT_MODERATOR</span> <span class="o">||</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getUserRole</span><span class="p">()</span> <span class="o">==</span> <span class="nx">AJAX_CHAT_USER</span> <span class="o">||</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getUserRole</span><span class="p">()</span> <span class="o">==</span> <span class="nx">AJAX_CHAT_GUEST</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">switch</span><span class="p">(</span><span class="nv">$textParts</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="p">{</span>
+</pre></div>
+
+<p>Then, the plugins are just included inside of that. Easy, right?</p>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
