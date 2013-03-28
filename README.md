@@ -24,9 +24,15 @@ Valid usage:
     /xkcd
     /xkcd new
     /xkcd rand
+    /xkcd <comic number>
+
+Examples:
+
     /xkcd 241
     /xkcd 1
     /xkcd 49
+    /xkcd new
+    /xkcd rand
 
 This has precautions put in place to prevent severe lag from 404s.
 
@@ -35,9 +41,33 @@ This has precautions put in place to prevent severe lag from 404s.
 This fetches stock data from the Yahoo! stock API. 
 
 Valid usage:
+    
+    /stock <stock symbol>
+
+Examples:
 
     /stock FB
     /stock GOOG
     /stock C
+
+###/hypem
+
+This'll pull track data from Hype Machine (http://Hypem.com)
+
+Valid usage:
+
+    /hypem genre <genre name>
+    /hypem search <search term>
+    /hypem artist <artist name>
+    /hypem popular
+    /hypem new
+
+Examples:
+
+    /hypem genre dubstep
+    /hypem search party rock
+    /hypem artist C2C
+    /hypem popular
+    /hypem new
 
 Feel free to submit pull requests with improvements.
