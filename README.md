@@ -14,6 +14,8 @@ if($this->getUserRole() == AJAX_CHAT_ADMIN || $this->getUserRole() == AJAX_CHAT_
   switch($textParts[0]) {
 ```
 
+Please look at the included example for more info.
+
 ###/xkcd
 
 This gets comics from XKCD.com.
@@ -71,3 +73,5 @@ Examples:
     /hypem new
 
 Feel free to submit pull requests with improvements.
+
+Note: The included example CustomAJAXChat.php is just there to show structure. Do not use this, as I can't guarantee it will work. 
