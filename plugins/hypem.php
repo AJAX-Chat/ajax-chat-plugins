@@ -5,7 +5,7 @@ switch ($hypec[1]) {
 	case 'genre':  // Get Hype Machine Stuff by Genre.
 		$genre = str_replace("/hypem genre ", "", $text); // Lazy man's way of getting the genre.
 		$hypej = json_decode(file_get_contents("http://hypem.com/playlist/tags/$genre/json/1/data.js"),TRUE); // Let's get that JSON data.
-		$songnum = rand(0,count($hypej));
+		$songnum = rand(0,count($hypej)-1);
 		$thumburl = str_replace("\\", "", $hypej[$songnum]['thumb_url_medium']);//Get the thumbnail image
 		$posturl = str_replace("\\", "", $hypej[$songnum]['posturl']);//Get the blog post
 		$itunesurl = str_replace("\\", "", $hypej[$songnum]['itunes_link']); //Grab the iTunes link for good measure
@@ -39,7 +39,7 @@ switch ($hypec[1]) {
 		//$songnum = rand(0,29);
 		$searchterm = str_replace("/hypem search ", "", $text); // Lazy man's way of getting the search.
 		$hypej = json_decode(file_get_contents("http://hypem.com/playlist/search/$searchterm/json/1/data.js"),TRUE); // Let's get that JSON data.
-		$songnum = rand(0,count($hypej)); //Get the maximum random number by counting the elements non recursively in the json array.
+		$songnum = rand(0,count($hypej)-1); //Get the maximum random number by counting the elements non recursively in the json array.
 		$thumburl = str_replace("\\", "", $hypej[$songnum]['thumb_url_medium']);//Get the thumbnail image
 		$posturl = str_replace("\\", "", $hypej[$songnum]['posturl']);//Get the blog post
 		$itunesurl = str_replace("\\", "", $hypej[$songnum]['itunes_link']); // Grab the iTunes link for good measure
@@ -71,7 +71,7 @@ switch ($hypec[1]) {
 	case 'artist': // Get Hype Machine Stuff by Artist
 		$artistname = str_replace("/hypem artist ", "", $text); // Lazy man's way of getting the search.
 		$hypej = json_decode(file_get_contents("http://hypem.com/playlist/artist/$artistname/json/1/data.js"),TRUE); // Let's get that JSON data.
-		$songnum = rand(0,count($hypej)); // Get the maximum random number by counting the number of elements in the array nonrecursively
+		$songnum = rand(0,count($hypej)-1); // Get the maximum random number by counting the number of elements in the array nonrecursively
 		$thumburl = !empty($hypej[$songnum]['thumb_url_medium']) ? str_replace("\\", "", $hypej[$songnum]['thumb_url_medium']) : $hypej[$songnum]['thumb_url'];//Get the thumbnail image
 		$posturl = str_replace("\\", "", $hypej[$songnum]['posturl']);//Get the blog post
 		$itunesurl = str_replace("\\", "", $hypej[$songnum]['itunes_link']); // Grab the iTunes link for good measure
@@ -102,7 +102,7 @@ switch ($hypec[1]) {
 		break;
 	case 'popular': // Get Popular Hype Machine Stuff
 		$hypej = json_decode(file_get_contents("http://hypem.com/playlist/popular/3day/json/1/data.js"),TRUE); // Let's get that JSON data.
-		$songnum = rand(0,count($hypej)); // Get the maximum random number by counting the number of elements in the array nonrecursively
+		$songnum = rand(0,count($hypej)-1); // Get the maximum random number by counting the number of elements in the array nonrecursively
 		$thumburl = !empty($hypej[$songnum]['thumb_url_medium']) ? str_replace("\\", "", $hypej[$songnum]['thumb_url_medium']) : $hypej[$songnum]['thumb_url'];//Get the thumbnail image
 		$posturl = str_replace("\\", "", $hypej[$songnum]['posturl']);//Get the blog post
 		$itunesurl = str_replace("\\", "", $hypej[$songnum]['itunes_link']); // Grab the iTunes link for good measure
@@ -133,7 +133,7 @@ switch ($hypec[1]) {
 		break;
 	case 'new':  // Get New Hype Machine Stuff
 		$hypej = json_decode(file_get_contents("http://hypem.com/playlist/latest/all/json/1/data.js"),TRUE); // Let's get that JSON data.
-		$songnum = rand(0,count($hypej)); // Get the maximum random number by counting the number of elements in the array nonrecursively
+		$songnum = rand(0,count($hypej)-1); // Get the maximum random number by counting the number of elements in the array nonrecursively
 		$thumburl = !empty($hypej[$songnum]['thumb_url_medium']) ? str_replace("\\", "", $hypej[$songnum]['thumb_url_medium']) : $hypej[$songnum]['thumb_url'];//Get the thumbnail image
 		$posturl = str_replace("\\", "", $hypej[$songnum]['posturl']);//Get the blog post
 		$itunesurl = str_replace("\\", "", $hypej[$songnum]['itunes_link']); // Grab the iTunes link for good measure
