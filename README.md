@@ -78,7 +78,7 @@ This will blur NSFW images, only unblurring on mouseover.
 
 Valid usage:
 
-    /nsfw <image URL>
+    /nsfw <image url>
     
 Examples:
 
@@ -86,6 +86,21 @@ Examples:
     /nsfw http://i.imgur.com/FORKS.jpg
     /nsfw http://i.imgur.com/SUSHI.jpg
     /nsfw http://i.imgur.com/BLAHB.jpg
+    
+###/sc
+
+This'll pull details from a Soundcloud URL, and spit it back out as a recommendation.
+
+Valid usage:
+
+    /sc <soundcloud url>
+    
+Examples:
+
+    /sc https://soundcloud.com/uponthebridge/blue-song
+    /sc https://soundcloud.com/ricardo-silva-131/moving-day
+    /sc https://soundcloud.com/stwosc/aura
+    /sc http://snd.sc/1cZmAMW
 
 Feel free to submit pull requests with improvements.
 
