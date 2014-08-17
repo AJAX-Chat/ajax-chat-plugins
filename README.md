@@ -14,7 +14,7 @@ if($this->getUserRole() == AJAX_CHAT_ADMIN || $this->getUserRole() == AJAX_CHAT_
   switch($textParts[0]) {
 ```
 
-Please look at the included example for more info.
+Please look at the included example for more info, or [the wiki page](https://github.com/Frug/AJAX-Chat/wiki/Custom-irc-style-commands#server-side) for better details.
 
 ##Table of comments
 
