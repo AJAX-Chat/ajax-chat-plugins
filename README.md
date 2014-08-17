@@ -72,6 +72,21 @@ Examples:
     /hypem popular
     /hypem new
 
+###/nsfw
+
+This will blur NSFW images, only unblurring on mouseover.
+
+Valid usage:
+
+    /nsfw <image URL>
+    
+Examples:
+
+    /nsfw http://i.imgur.com/EXAMPLE.jpg
+    /nsfw http://i.imgur.com/FORKS.jpg
+    /nsfw http://i.imgur.com/SUSHI.jpg
+    /nsfw http://i.imgur.com/BLAHB.jpg
+
 Feel free to submit pull requests with improvements.
 
 Note: The included example CustomAJAXChat.php is just there to show structure. Do not use this, as I can't guarantee it will work. 
