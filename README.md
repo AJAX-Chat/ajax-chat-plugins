@@ -62,7 +62,7 @@ Examples:
 
 ###/hypem
 
-This'll pull track data from Hype Machine (http://Hypem.com)
+This'll pull track data from [The Hype Machine](http://hypem.com)
 
 Valid usage:
 
