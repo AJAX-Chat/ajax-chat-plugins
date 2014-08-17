@@ -16,6 +16,14 @@ if($this->getUserRole() == AJAX_CHAT_ADMIN || $this->getUserRole() == AJAX_CHAT_
 
 Please look at the included example for more info.
 
+##Table of comments
+
+* [XKCD](#xkcd)
+* [Stock](#stock)
+* [Hype Machine](#hypem)
+* [NSFW](#nsfw)
+* [Soundcloud](#sc)
+
 ###/xkcd
 
 This gets comics from XKCD.com.
