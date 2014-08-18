@@ -82,7 +82,7 @@ Examples:
 
 ###/nsfw
 
-This will blur NSFW images, only unblurring on mouseover.
+This will blur NSFW images, only unblurring on mouseover. The `nsfw.css` file must be added into a location where it will be included in the main chat page. 
 
 Valid usage:
 
