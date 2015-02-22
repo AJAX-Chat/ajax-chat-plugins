@@ -14,15 +14,15 @@ class CustomAJAXChat extends AJAXChat {
 // Initialize custom configuration settings
 function initCustomConfig() {
 		global $db;
-		
+
 		// Use the existing phpBB database connection:
 		$this->setConfig('dbConnection', 'link', $db->db_connect_id);
 		}
-		
+
 		// Initialize custom request variables:
 		function initCustomRequestVars() {
 			global $user;
-			
+
 			// Auto-login phpBB users:
 			if(!$this->getRequestVar('logout') && ($user->data['user_id'] != ANONYMOUS)) {
 			$this->setRequestVar('login', true);
@@ -32,7 +32,7 @@ function initCustomConfig() {
 // Replace custom template tags:
 function replaceCustomTemplateTags($tag, $tagContent) {
 		global $user;
-		
+
 		switch($tag) {
 		default:
 		return null;
@@ -43,7 +43,7 @@ function replaceCustomTemplateTags($tag, $tagContent) {
 // or the user is authenticated as guest in the chat and the authentication system
 function revalidateUserID() {
 	global $user;
-	
+
 	if($this->getUserRole() === AJAX_CHAT_GUEST && $user->data['user_id'] == ANONYMOUS || ($this->getUserID() === $user->data['user_id'])) {
 		return true;
 		}
@@ -54,28 +54,28 @@ return false;
 // Returns null if login is invalid
 function getValidLoginUserData() {
 	global $auth,$user;
-	
+
 	// Return false if given user is a bot:
 	if($user->data['is_bot']) {
 		return false;
 	}
-	
+
 	// Check if we have a valid registered user:
 	if($user->data['is_registered']) {
 		$userData = array();
 		$userData['userID'] = $user->data['user_id'];
-		
+
 		$userData['userName'] = $this->trimUserName($user->data['username']);
-		
+
 		if($auth->acl_get('a_'))
 			$userData['userRole'] = AJAX_CHAT_ADMIN;
 		elseif($auth->acl_get('m_'))
 			$userData['userRole'] = AJAX_CHAT_MODERATOR;
 		else
 			$userData['userRole'] = AJAX_CHAT_USER;
-			
+
 			return $userData;
-		
+
 	} else {
 		// Guest users:
 		return $this->getGuestUser();
@@ -87,17 +87,17 @@ function getValidLoginUserData() {
 function &getChannels() {
 	if($this->_channels === null) {
 		global $auth;
-		
+
 		$this->_channels = array();
-		
+
 		$allChannels = $this->getAllChannels();
-	
+
 		foreach($allChannels as $key=>$value) {
 			// Check if we have to limit the available channels:
 			if($this->getConfig('limitChannelList') && !in_array($value, $this->getConfig('limitChannelList'))) {
 			continue;
 			}
-			
+
 			// Add the valid channels to the channel list (the defaultChannelID is always valid):
 			if($value == $this->getConfig('defaultChannelID') || $auth->acl_get('f_read', $value)) {
 				$this->_channels[$key] = $value;
@@ -112,9 +112,9 @@ function &getChannels() {
 function &getAllChannels() {
 	if($this->_allChannels === null) {
 		global $db;
-		
+
 		$this->_allChannels = array();
-		
+
 		// Get valid phpBB forums:
 		$sql = 'SELECT
 		forum_id,
@@ -125,22 +125,22 @@ function &getAllChannels() {
 		forum_type=1
 		AND
 		forum_password=\'\';';
-		
+
 		$result = $db->sql_query($sql);
-		
+
 		$defaultChannelFound = false;
-		
+
 		while ($row = $db->sql_fetchrow($result)) {
 			$forumName = $this->trimChannelName($row['forum_name']);
-			
+
 			$this->_allChannels[$forumName] = $row['forum_id'];
-			
+
 			if(!$defaultChannelFound && $row['forum_id'] == $this->getConfig('defaultChannelID')) {
 				$defaultChannelFound = true;
 			}
 		}
 		$db->sql_freeresult($result);
-		
+
 		if(!$defaultChannelFound) {
 			// Add the default channel as first array element to the channel list:
 			$this->_allChannels = array_merge(
@@ -157,10 +157,10 @@ function &getAllChannels() {
 // Method to set the style cookie depending on the phpBB user style
 function setStyle() {
 	global $config,$user,$db;
-	
+
 	if(isset($_COOKIE[$this->getConfig('sessionName'). '_style']) && in_array($_COOKIE[$this->getConfig('sessionName'). '_style'], $this->getConfig('styleAvailable')))
 		return;
-	
+
 	$styleID = (!$config['override_user_style'] && $user->data['user_id'] != ANONYMOUS) ? $user->data['user_style'] : $config['default_style'];
 	$sql = 'SELECT
 	style_name
@@ -171,11 +171,11 @@ function setStyle() {
 	$result = $db->sql_query($sql);
 	$styleName = $db->sql_fetchfield('style_name');
 	$db->sql_freeresult($result);
-	
+
 	if(!in_array($styleName, $this->getConfig('styleAvailable'))) {
 		$styleName = $this->getConfig('styleDefault');
 	}
-	
+
 	setcookie(
 	$this->getConfig('sessionName'). '_style',
 	$styleName,
@@ -207,16 +207,16 @@ function get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = true, $atts 
    $url .= md5( strtolower( trim( $email ) ) );
    $url .= "?s=$s&d=$d&r=$r";
    if ( $img ) {
-	   
+
       //$url = '<img src="' . $url . '"';
       //foreach ( $atts as $key => $var )
          //$url .= ' ' . $key . '="' . $var . '"';
       //$url .= ' />';
-	  
+
       $url = '[img]' . $url;
       foreach ( $atts as $key => $var )
          $url .= ' ' . $key . '="' . $var . '"';
-      $url .= '[/img]';	  
+      $url .= '[/img]';
    }
    return $url;
 }
@@ -224,20 +224,10 @@ function get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = true, $atts 
 ////////////////////////////////////////////////////////////////////////////////
 // here STARTS the CUSTOM stuff
 ////////////////////////////////////////////////////////////////////////////////
-//
-case '/help': 
-//
-	$say = "/stock <symbol>, /xkcd <new/rand/[comic number]>, /hypem <genre [genre name]/search [search term]/artist [artist name]/popular/new>";
-	//
-	$this->insertChatBotMessage( $this->getChannel(), $this->getUserName(). $say );
-//
-	return true; 
-default: 
-	return false; 
 
 case '/hypem':
-//	
-$hypec = explode(" ",$text); //Still too lazy to use text parts 
+//
+$hypec = explode(" ",$text); //Still too lazy to use text parts
 switch ($hypec[1]) {
 	case 'genre':  // Get Hype Machine Stuff by Genre.
 		$genre = str_replace("/hypem genre ", "", $text); // Lazy man's way of getting the genre.
@@ -407,7 +397,7 @@ switch ($hypec[1]) {
 	$this->insertChatBotMessage( $this->getChannel(), $say );
 	return true;
 default:
-	return false; 
+	return false;
 
 case '/stock':
 //if(stristr($text, '/stock'))
@@ -434,18 +424,18 @@ case '/stock':
 	//$rtime = date(DATE_RFC822, $rtime);
 	//$rtime = date(DATE_ATOM, $rtime);
 	//
-	$volume = number_format($scsv[3], 0, '. ', ','); 
+	$volume = number_format($scsv[3], 0, '. ', ',');
 	//$say = $results;
 	$say = "Stock quote for " . $scsv[0] . " at " . $rtime . ".\n Symbol: " . $scsv[1] . "\n Current bid: $" . $scsv[2] . " ($" . $scsv[10] . ")\n Percent Change: " . str_replace('"', '', $scsv[11]) . "Volume: " . $volume . "\n Open: $" . $scsv[4] . "\n High: $" . $scsv[5] . "\n Low: $" . $scsv[6] . "\n 52 Week High: $" . $scsv[7] . "\n 52 Week Low: $" . $scsv[8] . "\n P/E Ratio: " . $scsv[9];
 	//
 	$this->insertChatBotMessage($this->getChannel(), $say );
 }
-	return true; 
-default: 
-	return false; 
+	return true;
+default:
+	return false;
 
 case '/xkcd':
-	
+
 	$xkcds = explode(" ",$text); //Forgot to use textParts
 	$xkcds[1] = stristr($xkcds[1], ".") ? substr($xkcds[1],0,strpos($xkcds[1], ".")) : $xkcds[1]; //Let's make sure nobody's trying to fetch decimals.
 	if(empty($xkcds[1])||$xkcds[1]=="new") { //Both these get the newest comic
@@ -472,8 +462,8 @@ case '/xkcd':
 		$xkcderror = TRUE; //Sets an error
 		$xkerrortext = " doesn't know how to use /xkcd.\nUsage: '/xkcd <new/rand/[num]>' where [num] is a valid XKCD number"; //Error Message
 	}
-	if(!$xkcderror) { //If there wasn't an error...                                                                             
-	    /************************************************************************************************************************\
+	if(!$xkcderror) { //If there wasn't an error...
+	  /************************************************************************************************************************\
 		** Let's concatenate this string.                                                                                       *|
 		** XKCD JSON Variables:                                                                                                 *|
 		** "day" : The day it was published on.                                                                                 *|
